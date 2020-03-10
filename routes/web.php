@@ -21,7 +21,11 @@ Route::get('/', function () {
             'questions' => Question::all()
         ]
     );
-});
+})->name('homepage');
 
 Route::post('/', 'QuestionController@store');
+
+Route::get('/question/{question_id}/answers', 'AnswerController@show');
+
+
 
