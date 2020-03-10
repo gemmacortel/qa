@@ -26,6 +26,4 @@ Route::get('/', function () {
 Route::post('/', 'QuestionController@store');
 
 Route::get('/question/{question_id}/answers', 'AnswerController@show')->name('question');
-
-
-
+Route::post('/question/{question_id}/answers', 'AnswerController@store');

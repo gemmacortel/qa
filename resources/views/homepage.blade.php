@@ -13,7 +13,8 @@
     </form>
 
     @foreach ($questions as $question)
-        <h3>{{ $question->text }}</h3>
+        @php ($questionId = $question->id)
+        <a href="{{ route('question', ['question_id' => $questionId]) }}"><h3>{{ $question->text }}</h3></a>
         <p>{{$question->howManyAnswers()}} answers</p>
     @endforeach
 @stop

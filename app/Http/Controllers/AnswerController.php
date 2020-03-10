@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
-use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
@@ -13,5 +13,20 @@ class AnswerController extends Controller
             'answers',
             ['question' => Question::where('id', $question_id)->firstOrFail()]
         );
+    }
+
+    public function store()
+    {
+        request()->validate([
+            'text' => ['required', 'min:5'],
+        ]);
+
+        $newAnswer = new Answer();
+        $newAnswer->text = request('text');
+        $newAnswer->question_id = request('question');
+
+        $newAnswer->save();
+
+        return redirect('/question/'. request('question') . '/answers');
     }
 }
