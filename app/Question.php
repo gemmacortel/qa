@@ -10,4 +10,9 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function howManyAnswers()
+    {
+        return $this->hasMany(Answer::class)->count();
+    }
 }
