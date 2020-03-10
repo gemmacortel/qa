@@ -1,22 +1,29 @@
 @extends('layout')
 
 @section('content')
-    <h1>{{ $question->text }}</h1>
+    <div class="col-lg-6 offset-lg-3 text-center">
+        <h1 class="text-center my-5">{{ $question->text }}</h1>
 
-    <form method="POST">
-        @csrf
-        <label class="label">Answer:</label><br>
-        <input class="input" type="text" name="text" id="text"><br>
-        <p> {{ $errors->first('text') }} </p>
+        @foreach ($question->answers as $answer)
+            <p>{{ $answer->text }}</p>
+        @endforeach
 
-        <input class="input" type="hidden" name="question" id="question" value="{{ $question->id }}">
+        <br/>
 
-        <input type="submit" value="Submit">
-    </form>
+        <form method="POST">
+            @csrf
+            <h3 class="label">Answer the question! </h3><br>
+            <input class="input" type="text" name="text" id="text"><br>
+            <p> {{ $errors->first('text') }} </p>
 
-    @foreach ($question->answers as $answer)
-        <p>{{ $answer->text }}</p>
-    @endforeach
+            <input class="input" type="hidden" name="question" id="question" value="{{ $question->id }}">
 
-    <a href="{{ route('homepage') }}">Go back to questions list</a>
+            <input type="submit" value="Submit">
+
+        </form>
+
+        <br/>
+
+        <a href="{{ route('homepage') }}">Go back to questions list</a>
+    </div>
 @stop
