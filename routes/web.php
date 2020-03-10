@@ -22,3 +22,6 @@ Route::get('/', function () {
         ]
     );
 });
+
+Route::post('/', 'QuestionController@store');
+
