@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
     public function store()
     {
-        /*request()->validate([
-            'title' => ['required', 'min:3'],
-            'body' => ['required'],
-            'slug' => ['required'],
-        ]);*/
+        request()->validate([
+            'text' => ['required', 'min:5', 'ends_with:?'],
+        ]);
 
 
         $newQuestion = new Question();
